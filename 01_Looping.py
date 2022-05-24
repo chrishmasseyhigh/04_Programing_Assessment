@@ -43,28 +43,7 @@ def intcheck(question, low=None, high=None, exit_code = None):
             print(error)
             continue
 
-#Yes or no checker
-def yes_no(question):
-    yes_ok = ["no","n","nope"]
-    no_ok = ["yes","y","yep"]
 
-    valid= False 
-    while not valid:
-            response = input(question).lower()
-            #if they say yes, output 'program continues'
-            if response in no_ok:
-                response= "yes"
-                return response
-            #if they say no, output 'displays instructions'
-            elif response in yes_ok:
-                response= "no"
-                return response
-
-            #else, output'Please enter yes or no'
-            else:
-                print()
-                print("Please enter yes or no")
-                print()
 
 rounds_wanted = intcheck("How many rounds?  Press <enter> for infinite mode: ", 1, exit_code = "")
 mode=""
@@ -85,8 +64,9 @@ while rounds_played < rounds_wanted:
     print("-----Round {}-----".format(rounds_played))
     print()
     #asks to exit
-    exit = intcheck("what is the number? ",0,10, exit_code="xxx")
+    exit = intcheck("what is the answer? ", exit_code="xxx")
     if exit == "xxx":
         break
-
+print()
+print("end")
 
