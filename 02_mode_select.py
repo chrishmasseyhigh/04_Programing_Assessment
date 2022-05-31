@@ -8,6 +8,8 @@ times = ["x","*","times","t"]
 keep_going = ""
 #loop for testing
 while keep_going =="":
+    print()
+    keep_going= input("press enter to keep loping")
     mode_select = 1
     # loops if +-/x is not entered
     while mode_select > 0:
