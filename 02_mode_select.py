@@ -1,6 +1,8 @@
-
+from lib2to3.pgen2.token import PLUS
+import random
 
 #lists for diffrent inputs for the modes
+all_list = ["plus","minus","devide","times"]
 plus = ["+","plus","p"]
 minus = ["-","minus","m"]
 devide =["/","devide","d"]
@@ -20,19 +22,31 @@ while keep_going =="":
         #outputs what mode is chosen
         if what_mode in plus:
             print("plus")
-            mode_select = 0
+            mode = "plus"
+
         elif what_mode in minus:
             print("minus")
-            mode_select = 0
+            mode = "minus"
+   
         elif what_mode in devide:
             print("devide")
-            mode_select = 0
+            mode = "devide"
+      
         elif what_mode in times:
             print("times")
-            mode_select = 0
+            mode = "times"
+         
         elif what_mode == "":
             print("random")
-            mode_select = 0
+            mode = "random"
+            random_mode = random.choice(all_list)
+            print(random_mode)
+            
+        
         #prints error message if anything tother than +-/x is entered
         else:
             print("please enter + - x or /")
+            mode= "no"
+        
+        if mode !="no":
+            mode_select = 0
