@@ -1,5 +1,17 @@
+
+from operator import truediv
 import random
+import math
 #Functions go here
+
+#checks if item is a number or decimal
+def isfloat(num):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
+
 
 # Number checking function goes here
 def intcheck(question, low=None, high=None, exit_code = None):
@@ -45,36 +57,51 @@ def intcheck(question, low=None, high=None, exit_code = None):
             continue
 
 
-mode_list =["plus","minus","times","devide"]
-all_list = ["plus","minus","devide","times"]
+mode_list =["plus","minus","times","devided"]
+all_list = ["plus","minus","devided","times"]
 keep_going = ""
 while keep_going =="":
     mode = random.choice(mode_list) 
     print(mode)
     loop = 1
     
+    #loop for testing
     while loop<3:
             number_1 = random.randint(1,10)
             number_2 = random.randint(1,10)
-            if mode == "minus":
-                answer = number_1 - number_2
+            devide_loop = True
             
-            elif mode == "devide":
-                answer = number_1 / number_2
-            
-            elif mode == "times":
-                answer = number_1 * number_2
+            if mode == "devided":
+              
+                raw_answer = number_1 / number_2
+                answer = round(raw_answer, 2)
+                print(answer)
+                while devide_loop == True:
+                    user_input = input("What is {} {} {} ".format(number_1,mode,number_2))
 
-            elif mode == "random":
-                random_mode = random.choice(all_list)
-                
+                    if isfloat(user_input) == True:
+                        devide_loop = False
+
             else:
-                answer = number_1 + number_2
+                if mode == "minus":
+                    answer = number_1 - number_2
+                
+                elif mode == "times":
+                    answer = number_1 * number_2
 
-            print(answer)
-            high_2 = answer+10
-            user_input = intcheck("What is {} {} {}: ".format(number_1,mode,number_2),low=0,high= high_2,exit_code="xxx")
-            
+                elif mode == "random":
+                    random_mode = random.choice(all_list)
+                    
+                else:
+                    answer = number_1 + number_2
+
+
+                print(answer)
+
+                user_input = intcheck("What is {} {} {} ".format(number_1,mode,number_2),exit_code="xxx")
+
+            print(user_input)
+            print(answer)   
             if user_input == answer:
                 print("correct")
             else:
