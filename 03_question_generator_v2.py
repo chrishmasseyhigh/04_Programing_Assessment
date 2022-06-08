@@ -1,5 +1,4 @@
 
-from lib2to3.pgen2.token import PLUS
 import random
 import math
 #Functions go here
@@ -52,53 +51,69 @@ def intcheck(question, low=None, high=None, exit_code = None):
             print(error)
             continue
 
-
-mode_list =["plus","minus","times","devided"]
+#lists all the modes to chose from for testing
+mode_list =["plus","minus","times","devided","random"]
+random_mode_list =["plus","minus","times","devided"]
 all_list = ["plus","minus","devided","times"]
 keep_going = ""
+
 while keep_going =="":
-    mode = "devided"
-    #random.choice(mode_list) 
+    #generates mode for testing
+    mode = "random" #random.choice(mode_list) 
+    
+    #if random mode is chosen random mode is activated if not is is deacvtivated
+    if mode == "random":
+        random_mode = True
+    else:
+        random_mode=False
     print(mode)
     loop = 1
     
     #loop for testing
-    while loop<3:
+    while loop<7:
+            #generates numbers for answers
             number_1 = random.randint(1,10)
             number_2 = random.randint(1,10)
+            
+            #resets the loop for devide mode
             loop_devide = False
             
-            #modes
+            #generates answer based on mode
+            
+            #gereates a random mode for every quetion
+            if random_mode == True:
+                mode = random.choice(random_mode_list)  
+            
             
             #devide mode
+            
             if mode == "devided":
-                #while loop_devide == True:
+                #loops until the answer is an intiger
                 while loop_devide == False:
                     number_1 = random.randint(1,50)
                     number_2 = random.randint(1,50)
                     answer = number_1 / number_2
+                    #checks if answer is an itiger and breaks the loop if not
                     loop_devide = (answer.is_integer())
 
-            #minus mode
+            #forms answer buy - two diffrent numbers
             elif mode == "minus":
                     answer = number_1 - number_2
 
-            #times mode    
+            #forms answer buy * two diffrent numbers 
             elif mode == "times":
                     answer = number_1 * number_2
 
-            #random mode
-            elif mode == "random":
-                    random_mode = random.choice(all_list)
-
-            #plus mode       
+            #forms answer buy + two diffrent numbers
             else:
                     answer = number_1 + number_2
 
+            #gets the input from the user
             user_input = intcheck("What is {} {} {} ".format(number_1,mode,number_2),exit_code="xxx")
 
             print(user_input)
             print(answer)   
+            #checks if answer is wrong or right.
             if user_input == answer:
                 print("correct")
             else:
