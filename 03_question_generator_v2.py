@@ -1,16 +1,12 @@
 
-from operator import truediv
+from lib2to3.pgen2.token import PLUS
 import random
 import math
 #Functions go here
 
-#checks if item is a number or decimal
-def isfloat(num):
-    try:
-        float(num)
-        return True
-    except ValueError:
-        return False
+
+
+
 
 
 # Number checking function goes here
@@ -61,7 +57,8 @@ mode_list =["plus","minus","times","devided"]
 all_list = ["plus","minus","devided","times"]
 keep_going = ""
 while keep_going =="":
-    mode = random.choice(mode_list) 
+    mode = "devided"
+    #random.choice(mode_list) 
     print(mode)
     loop = 1
     
@@ -69,36 +66,36 @@ while keep_going =="":
     while loop<3:
             number_1 = random.randint(1,10)
             number_2 = random.randint(1,10)
-            devide_loop = True
+            loop_devide = False
             
+            #modes
+            
+            #devide mode
             if mode == "devided":
-              
-                raw_answer = number_1 / number_2
-                answer = round(raw_answer, 2)
-                print(answer)
-                while devide_loop == True:
-                    user_input = input("What is {} {} {} ".format(number_1,mode,number_2))
+                #while loop_devide == True:
+                while loop_devide == False:
+                    number_1 = random.randint(1,50)
+                    number_2 = random.randint(1,50)
+                    answer = number_1 / number_2
+                    loop_devide = (answer.is_integer())
 
-                    if isfloat(user_input) == True:
-                        devide_loop = False
-
-            else:
-                if mode == "minus":
+            #minus mode
+            elif mode == "minus":
                     answer = number_1 - number_2
-                
-                elif mode == "times":
+
+            #times mode    
+            elif mode == "times":
                     answer = number_1 * number_2
 
-                elif mode == "random":
+            #random mode
+            elif mode == "random":
                     random_mode = random.choice(all_list)
-                    
-                else:
+
+            #plus mode       
+            else:
                     answer = number_1 + number_2
 
-
-                print(answer)
-
-                user_input = intcheck("What is {} {} {} ".format(number_1,mode,number_2),exit_code="xxx")
+            user_input = intcheck("What is {} {} {} ".format(number_1,mode,number_2),exit_code="xxx")
 
             print(user_input)
             print(answer)   
