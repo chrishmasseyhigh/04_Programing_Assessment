@@ -1,6 +1,7 @@
 
 import random
 import math
+from turtle import right
 #Functions go here
 
 
@@ -54,12 +55,19 @@ def intcheck(question, low=None, high=None, exit_code = None):
 #lists all the modes to chose from for testing
 mode_list =["plus","minus","times","devided","random"]
 random_mode_list =["plus","minus","times","devided"]
-all_list = ["plus","minus","devided","times"]
 keep_going = ""
 
+result_history_list = []
+user_input_history_list = []
+#main rotine
+wins = 0
+rounds_played = 0
+loses = 0
+questions = 0
 while keep_going =="":
+
     #generates mode for testing
-    mode = "random" #random.choice(mode_list) 
+    mode = "devided" #random.choice(mode_list) 
     
     #if random mode is chosen random mode is activated if not is is deacvtivated
     if mode == "random":
@@ -72,8 +80,8 @@ while keep_going =="":
     #loop for testing
     while loop<7:
             #generates numbers for answers
-            number_1 = random.randint(1,10)
-            number_2 = random.randint(1,10)
+            number_1 = random.randint(1,30)
+            number_2 = random.randint(1,30)
             
             #resets the loop for devide mode
             loop_devide = False
@@ -88,40 +96,60 @@ while keep_going =="":
             #devide mode
             
             if mode == "devided":
-                #loops until the answer is an intiger
-                while loop_devide == False:
-                    number_1 = random.randint(1,50)
-                    number_2 = random.randint(1,50)
-                    answer = number_1 / number_2
-                    #checks if answer is an itiger and breaks the loop if not
-                    loop_devide = (answer.is_integer())
-
+                number_3 = number_1 * number_2
+                print(number_1)
+                print(number_2)
+                print(number_3)
+                answer = number_3 / number_2
+                number_1 = number_3
+                simple_mode = "/"
+            
             #forms answer buy - two diffrent numbers
             elif mode == "minus":
                     answer = number_1 - number_2
-
+                    simple_mode = "-"
             #forms answer buy * two diffrent numbers 
             elif mode == "times":
+                    number_1 = random.randint(1,12)
+                    number_2 = random.randint(1,12)
                     answer = number_1 * number_2
-
+                    simple_mode = "*"
             #forms answer buy + two diffrent numbers
             else:
                     answer = number_1 + number_2
-
+                    simple_mode = "+"
             #gets the input from the user
-            user_input = intcheck("What is {} {} {} ".format(number_1,mode,number_2),exit_code="xxx")
-
+            user_input = intcheck("What is {} {} {} ".format(number_1,simple_mode,number_2),exit_code="xxx")
+            
+            #breaks if exit code is entered
+            if user_input =="xxx":
+                break
+            
+            #prints answer and input for testing
             print(user_input)
             print(answer)   
+            
             #checks if answer is wrong or right.
             if user_input == answer:
                 print("correct")
+                wins +=1
+                result = "right"
             else:
                 print("wrong")
+                result = "wrong"
+                loses +=1
+            user_input_history_list.append(user_input)
+            result_history_list.append(result) 
+            questions +=1
             loop +=1
-
-
+    #breaks if exit code is entered
+    if user_input =="xxx":
+                break 
+    rounds_played +=1
 
     keep_going= input("press enter to keep looping")  
 
-    
+print(rounds_played)
+print(questions)
+print(wins)
+print(loses)    
