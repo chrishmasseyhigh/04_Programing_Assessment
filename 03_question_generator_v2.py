@@ -53,8 +53,8 @@ def intcheck(question, low=None, high=None, exit_code = None):
             continue
 
 #lists all the modes to chose from for testing
-mode_list =["plus","minus","times","devided","random"]
-random_mode_list =["plus","minus","times","devided"]
+mode_list =["plus","minus","times","divided","random"]
+random_mode_list =["plus","minus","times","divided"]
 keep_going = ""
 
 result_history_list = []
@@ -67,7 +67,7 @@ questions = 0
 while keep_going =="":
 
     #generates mode for testing
-    mode = "devided" #random.choice(mode_list) 
+    mode = random.choice(mode_list) 
     
     #if random mode is chosen random mode is activated if not is is deacvtivated
     if mode == "random":
@@ -95,11 +95,8 @@ while keep_going =="":
             
             #devide mode
             
-            if mode == "devided":
+            if mode == "divided":
                 number_3 = number_1 * number_2
-                print(number_1)
-                print(number_2)
-                print(number_3)
                 answer = number_3 / number_2
                 number_1 = number_3
                 simple_mode = "/"
