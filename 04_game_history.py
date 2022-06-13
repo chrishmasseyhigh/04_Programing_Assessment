@@ -2,7 +2,7 @@ import random
 
 
 user_input_history_list =[4,7,1,8,1,6,1,6,1,4,89,1,35,1,4,245,325,43,12,11]
-result_history_list = ["win","loss","win","loss","win","loss","win","loss","win","loss","win","loss","win","loss","win","loss","win","win","loss","win"]
+result_history_list = ["win","loss","win","loss","win","loss","win","loss","win","loss","win","loss","xxx","loss","win","loss","win","win","loss","win"]
 list_amount = 0
 wins = 0
 rounds_played = 0
@@ -34,12 +34,15 @@ while items < rounds_played:
         #prints what was chosen
         print("{} choice ".format(choice))
         print(" you chose ({}) number was was ({})".format(user_history,result_history))
+        #breaks if ueser exits mid round
+        if result_history == "xxx":
+            mini_loop = 13
         choice +=1
         mini_loop +=1
         list_amount +=1
     items +=1
 
-    #breaks if only one round
+    #breaks if only one round played
     if items == rounds_played:
         break
     
