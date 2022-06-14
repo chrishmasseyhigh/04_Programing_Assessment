@@ -91,10 +91,13 @@ while keep_going =="":
                 mode = random.choice(random_mode_list)  
             
             #generates numbers for answers
+            
+            #generates a high number for deive and plus
             if mode in high_number_list:
                 number_1 = random.randint(1,30)
                 number_2 = random.randint(1,30)
             
+            #generates a smaller number for minus and times mode
             else:
                 number_1 = random.randint(1,15)
                 number_2 = random.randint(1,15)
@@ -122,7 +125,7 @@ while keep_going =="":
                     answer = number_1 + number_2
                     simple_mode = "+"
             #gets the input from the user
-            user_input = intcheck("What is {} {} {} ".format(number_1,simple_mode,number_2),exit_code="xxx")
+            user_input = intcheck("What is {} {} {} ".format(number_1,simple_mode,number_2),low = 0, exit_code="xxx")
             
             #breaks if exit code is entered
             if user_input =="xxx":
