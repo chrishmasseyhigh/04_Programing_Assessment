@@ -55,6 +55,7 @@ def intcheck(question, low=None, high=None, exit_code = None):
 #lists all the modes to chose from for testing
 mode_list =["plus","minus","times","divided","random"]
 random_mode_list =["plus","minus","times","divided"]
+high_number_list=["plus","devided"]
 keep_going = ""
 
 result_history_list = []
@@ -79,10 +80,7 @@ while keep_going =="":
     
     #loop for testing
     while loop<7:
-            #generates numbers for answers
-            number_1 = random.randint(1,30)
-            number_2 = random.randint(1,30)
-            
+           
             #resets the loop for devide mode
             loop_devide = False
             
@@ -92,7 +90,14 @@ while keep_going =="":
             if random_mode == True:
                 mode = random.choice(random_mode_list)  
             
+            #generates numbers for answers
+            if mode in high_number_list:
+                number_1 = random.randint(1,30)
+                number_2 = random.randint(1,30)
             
+            else:
+                number_1 = random.randint(1,15)
+                number_2 = random.randint(1,15)
             #devide mode
             
             if mode == "divided":
@@ -103,12 +108,13 @@ while keep_going =="":
             
             #forms answer buy - two diffrent numbers
             elif mode == "minus":
-                    answer = number_1 - number_2
+                    number_3 = number_1 * number_2
+                    answer = number_3 - number_2
+                    number_1 = number_3
                     simple_mode = "-"
             #forms answer buy * two diffrent numbers 
             elif mode == "times":
-                    number_1 = random.randint(1,12)
-                    number_2 = random.randint(1,12)
+
                     answer = number_1 * number_2
                     simple_mode = "*"
             #forms answer buy + two diffrent numbers
