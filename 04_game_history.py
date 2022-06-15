@@ -49,12 +49,15 @@ keep_going= ""
 
 #loop for testing
 while keep_going == "":
+    
+    #resets all values
     list_amount = 0
     wins = 0
-
     loses = 0
     questions = 0
     rounds_played = 0
+    
+    #makes history for testing
     user_input_history_list =[4,7,1,8,1,6,1,6,1,4,89,1,35,1,4,245,325,43,12,11]
     result_history_list = ["win","loss","win","loss","win","loss","win","loss","win","loss","win","loss","xxx","loss","win","loss","win","win","loss","win"]
     rounds_played = intcheck("how many rounds? ", low = 0)
