@@ -53,6 +53,8 @@ def yes_no(question):
                 print()
 
 #main rotine
+
+#asks if user has played before and dispays instrictions if they enter no
 played_before = yes_no("have you played before? ")
 if played_before =="no":
     instructions()
