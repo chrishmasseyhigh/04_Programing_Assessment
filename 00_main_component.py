@@ -109,6 +109,7 @@ high_number_list=["plus","devided"]
 keep_going = ""
 
 #sets up all the history
+answer_history_list=[]
 result_history_list = []
 user_input_history_list = []
 wins = 0
@@ -140,7 +141,6 @@ mode=""
 if rounds_wanted == "":
     mode = "infinite"
     rounds_wanted = 10 
-
 
 # play it
 rounds_played = 0
@@ -196,7 +196,6 @@ while rounds_played < rounds_wanted:
     print()
     question_loop = 0
     
-
     #if random mode is chosen random mode is activated if not is is deacvtivated
     if mode == "random":
         random_mode = True
@@ -211,9 +210,7 @@ while rounds_played < rounds_wanted:
     #loops for 10 quesses
     while question_loop <7: 
         #generates answer based on mode
-                
-        #generates numbers for answers
-                
+                           
         #generates a high number for devide and plus
         if mode in high_number_list:
             number_1 = random.randint(1,30)
@@ -259,35 +256,52 @@ while rounds_played < rounds_wanted:
 
         #breaks if exit code is entered
         if user_input =="xxx":
-            user_input_history_list.append(user_input)
-            result_history_list.append(result) 
             result = "xxx"
+            user_input_history_list.append(user_input)
+            answer_history_list.append(answer)
+            result_history_list.append(result)
             break
                 
-
         #checks if answer is wrong or right.
         if user_input == answer:        
-            print("correct")
+            print("you are correct")
             wins +=1
-            result = "right"
+            result = "correct"
 
         else:
-            print("wrong")
-            result = "wrong"
+            print("you are incorrect answer was {}".format(answer))
+            result = "incorrect"
             loses +=1
         
+        answer_history_list.append(answer)
         user_input_history_list.append(user_input)
         result_history_list.append(result) 
         questions +=1
             
         question_loop +=1
 print("****************************************game history****************************************")
-
-
-
-
 print()
-print("round history")
+# prints win and loss history
+statement_decorator("win and loss history","^")
+
+#caluclates percentage of wins and loses
+total_win_loss = wins + loses
+win_percent = round((wins / total_win_loss)*100)
+loss_percent = round((loses / total_win_loss)*100)
+
+#prints win and loss percentage and amount
+print()
+print("you won {} times".format(wins))
+print()
+print("you lost {} times".format(loses))
+print()
+print("you won {}% of the time".format(win_percent))
+print()
+print("you lost {}% of the time".format(loss_percent))
+print()
+
+# prints round history
+statement_decorator("round history","`")
 print()
 # prints first round
 if rounds_played >0:
@@ -296,42 +310,50 @@ if rounds_played >0:
 
 list_amount= 0
 next_round =1
-items = 0
+items = 1
 # prints user history
 while items < rounds_played:
     #breaks if no questions are answered
     if questions == 0:
         break
-    round = 1
+    
+    #resets round loop
     mini_loop = 0
-        
+
+    #resest what choice you are on   
     choice = 1
     # loops for each round
     while mini_loop <7:
         #gets the right item for each guess
         user_history = user_input_history_list[list_amount]
         result_history = result_history_list[list_amount]
+        answer_history = answer_history_list[list_amount]
         #prints what was chosen
         print("{} choice ".format(choice))
-        print(" you chose ({}) the guess was ({})".format(user_history,result_history))
+        print(" you chose ({}) the answer was ({}) the guess was ({})".format(user_history,answer_history,result_history))
         #breaks if ueser exits mid round
         if user_history == "xxx":
             break
         
+        #moves to next question
         choice +=1
         mini_loop +=1
         list_amount +=1
-        items +=1
-
+    
+    #adds to end loop
+    items +=1
+    
     #breaks if only one round played
     if items == rounds_played:
         break
+    
         
     #prints the round
     elif rounds_played >1:
         next_round +=1
         print()
         print("-----------round {}------------".format(next_round))
-        
+
+    #breaks if all else does not work    
     else:
         break
