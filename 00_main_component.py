@@ -221,7 +221,7 @@ while rounds_played < rounds_wanted:
             number_1 = random.randint(1,12)
             number_2 = random.randint(1,12)
         
-        #gereates a random mode for every quetion
+        #gereates a random mode for every quetion if radom mode is acitivated
         if random_mode == True:
             mode = random.choice(random_mode_list)  
         #devide mode
@@ -273,32 +273,39 @@ while rounds_played < rounds_wanted:
             result = "incorrect"
             loses +=1
         
+        #lists choices
         answer_history_list.append(answer)
         user_input_history_list.append(user_input)
         result_history_list.append(result) 
         questions +=1
-            
+
+        #adds to stop the loop    
         question_loop +=1
+
+#game history
 print("****************************************game history****************************************")
 print()
 # prints win and loss history
 statement_decorator("win and loss history","^")
 
 #caluclates percentage of wins and loses
-total_win_loss = wins + loses
-win_percent = round((wins / total_win_loss)*100)
-loss_percent = round((loses / total_win_loss)*100)
+if questions < 1:
+    print("no history")
+elif questions > 1:
+    total_win_loss = wins + loses
+    win_percent = round((wins / total_win_loss)*100)
+    loss_percent = round((loses / total_win_loss)*100)
 
-#prints win and loss percentage and amount
-print()
-print("you won {} times".format(wins))
-print()
-print("you lost {} times".format(loses))
-print()
-print("you won {}% of the time".format(win_percent))
-print()
-print("you lost {}% of the time".format(loss_percent))
-print()
+    #prints win and loss percentage and amount
+    print()
+    print("you won {} times".format(wins))
+    print()
+    print("you lost {} times".format(loses))
+    print()
+    print("you won {}% of the time".format(win_percent))
+    print()
+    print("you lost {}% of the time".format(loss_percent))
+    print()
 
 # prints round history
 statement_decorator("round history","`")
@@ -306,7 +313,6 @@ print()
 # prints first round
 if rounds_played >0:
     print("-----------round 1-----------")
-
 
 list_amount= 0
 next_round =1
@@ -346,8 +352,7 @@ while items < rounds_played:
     #breaks if only one round played
     if items == rounds_played:
         break
-    
-        
+       
     #prints the round
     elif rounds_played >1:
         next_round +=1
