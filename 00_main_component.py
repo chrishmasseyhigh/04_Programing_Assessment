@@ -125,7 +125,7 @@ times = ["x","*","times","t"]
 keep_going = ""
  
  
-statement_decorator("welcome to the basic math game","+")
+statement_decorator("\x1B[3mwelcome to the basic math game","+")
 print()
 #asks if user has played before and dispays instrictions if they enter no
 played_before = yes_no("have you played before? ")
@@ -210,7 +210,12 @@ while rounds_played < rounds_wanted:
     #loops for 10 quesses
     while question_loop <7: 
         #generates answer based on mode
-                           
+                        
+        #gereates a random mode for every quetion if radom mode is acitivated
+        if random_mode == True:
+            mode = random.choice(random_mode_list)  
+        
+        
         #generates a high number for devide and plus
         if mode in high_number_list:
             number_1 = random.randint(1,30)
@@ -221,9 +226,7 @@ while rounds_played < rounds_wanted:
             number_1 = random.randint(1,12)
             number_2 = random.randint(1,12)
         
-        #gereates a random mode for every quetion if radom mode is acitivated
-        if random_mode == True:
-            mode = random.choice(random_mode_list)  
+        
         #devide mode
                 
         if mode == "divided":
@@ -289,8 +292,13 @@ print()
 statement_decorator("win and loss history","^")
 
 #caluclates percentage of wins and loses
+
+#if no questions are enetred it tells the user they have no history
 if questions < 1:
     print("no history")
+
+# if there are more than one questions entered one (to avoid having xxx as the first answer) 
+# win and loss history is diplayed
 elif questions > 1:
     total_win_loss = wins + loses
     win_percent = round((wins / total_win_loss)*100)
