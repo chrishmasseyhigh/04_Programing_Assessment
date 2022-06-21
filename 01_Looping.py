@@ -44,7 +44,7 @@ def intcheck(question, low=None, high=None, exit_code = None):
             continue
 
 
-
+#asks user for how many rounds they want to play or they can press ener for ininite mode
 rounds_wanted = intcheck("How many rounds?  Press <enter> for infinite mode: ", 1, exit_code = "")
 mode=""
 if rounds_wanted == "":
