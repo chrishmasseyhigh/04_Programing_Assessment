@@ -295,7 +295,8 @@ statement_decorator("win and loss history","^")
 
 #if no questions are enetred it tells the user they have no history
 if questions < 1:
-    print("no history")
+    print()
+    statement_decorator("no history you chickened out","!")
 
 # if there are more than one questions entered one (to avoid having xxx as the first answer) 
 # win and loss history is diplayed
@@ -315,58 +316,58 @@ elif questions > 1:
     print("you lost {}% of the time".format(loss_percent))
     print()
 
-# prints round history
-statement_decorator("round history","`")
-print()
-# prints first round
-if rounds_played >0:
-    print("-----------round 1-----------")
+    # prints round history
+    statement_decorator("round history","`")
+    print()
+    # prints first round
+    if rounds_played >0:
+        print("-----------round 1-----------")
 
-list_amount= 0
-next_round =1
-items = 1
-# prints user history
-while items < rounds_played:
-    #breaks if no questions are answered
-    if questions == 0:
-        break
-    
-    #resets round loop
-    mini_loop = 0
-
-    #resest what choice you are on   
-    choice = 1
-    # loops for each round
-    while mini_loop <7:
-        #gets the right item for each guess
-        user_history = user_input_history_list[list_amount]
-        result_history = result_history_list[list_amount]
-        answer_history = answer_history_list[list_amount]
-        #prints what was chosen
-        print("{} choice ".format(choice))
-        print(" you chose ({}) the answer was ({}) the guess was ({})".format(user_history,answer_history,result_history))
-        #breaks if ueser exits mid round
-        if user_history == "xxx":
+    list_amount= 0
+    next_round =1
+    items = 1
+    # prints user history
+    while items < rounds_played:
+        #breaks if no questions are answered
+        if questions == 0:
             break
         
-        #moves to next question
-        choice +=1
-        mini_loop +=1
-        list_amount +=1
-    
-    #adds to end loop
-    items +=1
-    
-    #breaks if only one round played
-    if items == rounds_played:
-        break
-       
-    #prints the round
-    elif rounds_played >1:
-        next_round +=1
-        print()
-        print("-----------round {}------------".format(next_round))
+        #resets round loop
+        mini_loop = 0
 
-    #breaks if all else does not work    
-    else:
-        break
+        #resest what choice you are on   
+        choice = 1
+        # loops for each round
+        while mini_loop <7:
+            #gets the right item for each guess
+            user_history = user_input_history_list[list_amount]
+            result_history = result_history_list[list_amount]
+            answer_history = answer_history_list[list_amount]
+            #prints what was chosen
+            print("{} choice ".format(choice))
+            print(" you chose ({}) the answer was ({}) the guess was ({})".format(user_history,answer_history,result_history))
+            #breaks if ueser exits mid round
+            if user_history == "xxx":
+                break
+            
+            #moves to next question
+            choice +=1
+            mini_loop +=1
+            list_amount +=1
+        
+        #adds to end loop
+        items +=1
+        
+        #breaks if only one round played
+        if items == rounds_played:
+            break
+        
+        #prints the round
+        elif rounds_played >1:
+            next_round +=1
+            print()
+            print("-----------round {}------------".format(next_round))
+
+        #breaks if all else does not work    
+        else:
+            break
