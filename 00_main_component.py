@@ -46,11 +46,16 @@ def intcheck(question, low=None, high=None, exit_code = None):
             continue
         
 #statement decorator
-def statement_decorator(statement, decoration):
+def statement_decorator(statement, decoration, sides):
     sides = decoration * 3
 
     statement = "{} {} {}".format(sides, statement,sides)
     top_bottom = decoration * len(statement)
+    if sides == 1:
+        print(statement)
+    elif sides == 2:
+        print(top_bottom)
+    
     print(top_bottom)
     print(statement)
     print(top_bottom)
@@ -101,7 +106,7 @@ def instructions():
 
 
 #**************************main rotine***************************       
-#do this
+#sets up the history
 question_amount = 0
 quiz_history = [] 
 user_input_historylist =[]
@@ -109,8 +114,6 @@ user_input_historylist =[]
 random_mode_list =["plus","minus","times","divided"]
 high_number_list=["plus","devided"]
 keep_going = ""
-
-#sets up all the history
 
 wins = 0
 rounds_played = 0
@@ -257,17 +260,22 @@ while rounds_played < rounds_wanted:
         print()
 
         #breaks if exit code is entered
-        #checks if answer is wrong or right.
+        #checks if answer is wrong or right or seets result to xxx if they want to exit
         if user_input == answer:        
             print("you are right")
             wins +=1
             result = "right"
+        
+
+        elif user_input =="xxx":
+            result = "xxx"
+       
         else:
             print("you are wrong answer was {}".format(answer))
             result = "wrong"
             loses +=1
         
-
+        #gets user history- makes the question history and stores it
         if user_input == answer:
             outcome = "Question {}: {} {} {} = {}, {}".format(question_amount,number_1,simple_mode,number_2, answer, result)
         else:
@@ -276,9 +284,8 @@ while rounds_played < rounds_wanted:
         quiz_history.append(outcome)
         user_input_historylist.append(user_input)
         
-        
+        #breaks if xx is entered
         if user_input =="xxx":
-            result = "xxx"
             break
                 
 
