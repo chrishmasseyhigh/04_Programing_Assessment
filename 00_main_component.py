@@ -1,5 +1,5 @@
 import random
-from statistics import median
+
 
 #functions go here
 
@@ -140,20 +140,21 @@ if played_before =="no":
 
 #asks user for how many rounds they want to play or they can press ener for ininite mode
 rounds_wanted = intcheck("How many rounds?  Press <enter> for infinite mode: ", 1, exit_code = "")
-mode=""
+round_mode=""
+# play it
+rounds_played = 0
 
 #infinite mode
 if rounds_wanted == "":
-    mode = "infinite"
+    round_mode = "infinite"
     rounds_wanted = 10 
 
-# play it
-rounds_played = 0
+
 
 #loops for desiered amount
 while rounds_played < rounds_wanted:
     question_amount = 1 
-    if mode == "infinite":
+    if round_mode == "infinite":
         rounds_wanted +=1
     
     mode_select = 1
@@ -193,7 +194,7 @@ while rounds_played < rounds_wanted:
     
     rounds_played +=1
     
-    #breaks cod if xx is enetered
+    #breaks code if xxx is enetered
     if mode == "xxx":
         break
     #displays round 
@@ -336,6 +337,10 @@ else:
     if rounds_played >0:
         statement_decorator(" Round 1","-",1)
 
+    rounds_played +=1
+    if round_mode == "infinite":
+        rounds_played -=1
+        
     list_amount= 0
     next_round =1
     items = 1
