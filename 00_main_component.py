@@ -101,23 +101,22 @@ def instructions():
 
 
 #**************************main rotine***************************       
- 
+#do this
+question_amount = 0
+quiz_history = [] 
+user_input_historylist =[]
 #lists all the modes to chose from for testing
-mode_list =["plus","minus","times","divided","random"]
 random_mode_list =["plus","minus","times","divided"]
 high_number_list=["plus","devided"]
 keep_going = ""
 
 #sets up all the history
-answer_history_list=[]
-result_history_list = []
-user_input_history_list = []
+
 wins = 0
 rounds_played = 0
 loses = 0
 questions = 0 
 #lists for diffrent inputs for the modes
-all_list = ["plus","minus","devide","times"]
 plus = ["+","plus","p"]
 minus = ["-","minus","m"]
 devide =["/","devide","d"]
@@ -165,7 +164,7 @@ while rounds_played < rounds_wanted:
             mode = "minus"
    
         elif what_mode in devide:
-            mode = "devide"
+            mode = "divide"
       
         elif what_mode in times:
             mode = "times"
@@ -258,30 +257,33 @@ while rounds_played < rounds_wanted:
         print()
 
         #breaks if exit code is entered
-        if user_input =="xxx":
-            result = "xxx"
-            user_input_history_list.append(user_input)
-            answer_history_list.append(answer)
-            result_history_list.append(result)
-            break
-                
         #checks if answer is wrong or right.
         if user_input == answer:        
-            print("you are correct")
+            print("you are right")
             wins +=1
-            result = "correct"
-
+            result = "right"
         else:
-            print("you are incorrect answer was {}".format(answer))
-            result = "incorrect"
+            print("you are wrong answer was {}".format(answer))
+            result = "wrong"
             loses +=1
         
-        #lists choices
-        answer_history_list.append(answer)
-        user_input_history_list.append(user_input)
-        result_history_list.append(result) 
-        questions +=1
 
+        if user_input == answer:
+            outcome = "Question {}: {} {} {} = {}, {}".format(question_amount,number_1,simple_mode,number_2, answer, result)
+        else:
+            outcome = "Question {}: {} {} {} = {}, {}, you said {}".format(question_amount,number_1, simple_mode, number_2, answer, result, user_input)
+
+        quiz_history.append(outcome)
+        user_input_historylist.append(user_input)
+        
+        
+        if user_input =="xxx":
+            result = "xxx"
+            break
+                
+
+        questions +=1
+        question_amount+=1
         #adds to stop the loop    
         question_loop +=1
 
@@ -294,13 +296,13 @@ statement_decorator("win and loss history","^")
 #caluclates percentage of wins and loses
 
 #if no questions are enetred it tells the user they have no history
-if questions < 1:
+if questions == 0:
     print()
     statement_decorator("no history you chickened out","!")
 
 # if there are more than one questions entered one (to avoid having xxx as the first answer) 
 # win and loss history is diplayed
-elif questions > 1:
+else:
     total_win_loss = wins + loses
     win_percent = round((wins / total_win_loss)*100)
     loss_percent = round((loses / total_win_loss)*100)
@@ -321,7 +323,7 @@ elif questions > 1:
     print()
     # prints first round
     if rounds_played >0:
-        print("-----------round 1-----------")
+        print("----------- Round 1-----------")
 
     list_amount= 0
     next_round =1
@@ -340,12 +342,10 @@ elif questions > 1:
         # loops for each round
         while mini_loop <7:
             #gets the right item for each guess
-            user_history = user_input_history_list[list_amount]
-            result_history = result_history_list[list_amount]
-            answer_history = answer_history_list[list_amount]
+            user_history = user_input_historylist[list_amount]
+            final_quiz_history = quiz_history[list_amount]
             #prints what was chosen
-            print("{} choice ".format(choice))
-            print(" you chose ({}) the answer was ({}) the guess was ({})".format(user_history,answer_history,result_history))
+            print(final_quiz_history)
             #breaks if ueser exits mid round
             if user_history == "xxx":
                 break
@@ -366,8 +366,4 @@ elif questions > 1:
         elif rounds_played >1:
             next_round +=1
             print()
-            print("-----------round {}------------".format(next_round))
-
-        #breaks if all else does not work    
-        else:
-            break
+            print("----------- Round {}------------".format(next_round))
