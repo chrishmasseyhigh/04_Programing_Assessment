@@ -337,6 +337,7 @@ else:
     if rounds_played >0:
         statement_decorator(" Round 1","-",1)
 
+    #fixes round issue
     rounds_played +=1
     if round_mode == "infinite":
         rounds_played -=1
