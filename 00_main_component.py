@@ -46,15 +46,15 @@ def intcheck(question, low=None, high=None, exit_code = None):
             continue
         
 #statement decorator
-def statement_decorator(statement, decoration, sides):
+def statement_decorator(statement, decoration, ):
     sides = decoration * 3
 
     statement = "{} {} {}".format(sides, statement,sides)
     top_bottom = decoration * len(statement)
-    if sides == 1:
-        print(statement)
-    elif sides == 2:
-        print(top_bottom)
+    #if sides == 1:
+    #print(statement)
+    #elif sides == 2:
+    #print(top_bottom)
     
     print(top_bottom)
     print(statement)
@@ -107,7 +107,6 @@ def instructions():
 
 #**************************main rotine***************************       
 #sets up the history
-question_amount = 0
 quiz_history = [] 
 user_input_historylist =[]
 #lists all the modes to chose from for testing
@@ -149,6 +148,7 @@ rounds_played = 0
 
 #loops for desiered amount
 while rounds_played < rounds_wanted:
+    question_amount = 1 
     if mode == "infinite":
         rounds_wanted +=1
     
