@@ -1,4 +1,5 @@
 import random
+from statistics import median
 
 #functions go here
 
@@ -46,19 +47,22 @@ def intcheck(question, low=None, high=None, exit_code = None):
             continue
         
 #statement decorator
-def statement_decorator(statement, decoration, ):
-    sides = decoration * 3
-
+def statement_decorator(statement, decoration,mode):
+    if mode == 1:
+        sides = decoration * 14
+    elif mode == 2:
+        sides = decoration * 34
+    else:
+        sides = decoration
     statement = "{} {} {}".format(sides, statement,sides)
     top_bottom = decoration * len(statement)
-    #if sides == 1:
-    #print(statement)
-    #elif sides == 2:
-    #print(top_bottom)
+    if mode == 1 or mode ==2:
+        print(statement)
     
-    print(top_bottom)
-    print(statement)
-    print(top_bottom)
+    else:
+        print(top_bottom)
+        print(statement)
+        print(top_bottom)
 
     return ""
 
@@ -88,7 +92,7 @@ def yes_no(question):
 # Displays instructions, returns ""
 def instructions():
     print()
-    statement_decorator("How To Play",".")
+    statement_decorator("How To Play",".",3)
 
     print('''
 
@@ -126,7 +130,7 @@ times = ["x","*","times","t"]
 keep_going = ""
  
  
-statement_decorator("\x1B[3mwelcome to the basic math game","+")
+statement_decorator("\x1B[3mwelcome to the basic math game","+",3)
 print()
 #asks if user has played before and dispays instrictions if they enter no
 played_before = yes_no("have you played before? ")
@@ -194,7 +198,7 @@ while rounds_played < rounds_wanted:
         break
     #displays round 
     print()
-    print("---------Round {}---------".format(rounds_played))
+    statement_decorator("Round {}".format(rounds_played),"-",1)
     print()
     question_loop = 0
     
@@ -295,17 +299,17 @@ while rounds_played < rounds_wanted:
         question_loop +=1
 
 #game history
-print("****************************************game history****************************************")
+statement_decorator("game history","*",2)
 print()
 # prints win and loss history
-statement_decorator("win and loss history","^")
+statement_decorator("win and loss history","^",3)
 
 #caluclates percentage of wins and loses
 
 #if no questions are enetred it tells the user they have no history
 if questions == 0:
     print()
-    statement_decorator("no history you chickened out","!")
+    statement_decorator("no history you chickened out","!",3)
 
 # if there are more than one questions entered one (to avoid having xxx as the first answer) 
 # win and loss history is diplayed
@@ -326,11 +330,11 @@ else:
     print()
 
     # prints round history
-    statement_decorator("round history","`")
+    statement_decorator("round history","`",3)
     print()
     # prints first round
     if rounds_played >0:
-        print("----------- Round 1-----------")
+        statement_decorator(" Round 1","-",1)
 
     list_amount= 0
     next_round =1
@@ -373,4 +377,4 @@ else:
         elif rounds_played >1:
             next_round +=1
             print()
-            print("----------- Round {}------------".format(next_round))
+            statement_decorator(" Round {}".format(next_round),"-",1)
