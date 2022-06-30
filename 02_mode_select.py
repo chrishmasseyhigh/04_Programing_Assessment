@@ -2,10 +2,10 @@
 import random
 
 #lists for diffrent inputs for the modes
-all_list = ["plus","minus","devide","times"]
+all_list = ["plus","minus","divide","times"]
 plus = ["+","plus","p"]
 minus = ["-","minus","m"]
-devide =["/","devide","d"]
+divide =["/","divide","d"]
 times = ["x","*","times","t"]
 keep_going = ""
 
@@ -28,9 +28,9 @@ while keep_going =="":
             print("minus")
             mode = "minus"
    
-        elif what_mode in devide:
-            print("devide")
-            mode = "devide"
+        elif what_mode in divide:
+            print("divide")
+            mode = "divide"
       
         elif what_mode in times:
             print("times")
