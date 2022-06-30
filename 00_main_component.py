@@ -114,7 +114,7 @@ quiz_history = []
 user_input_historylist =[]
 #lists all the modes to chose from for testing
 random_mode_list =["plus","minus","times","divided"]
-high_number_list=["plus","devided"]
+high_number_list=["plus","divided"]
 keep_going = ""
 
 wins = 0
@@ -124,7 +124,7 @@ questions = 0
 #lists for diffrent inputs for the modes
 plus = ["+","plus","p"]
 minus = ["-","minus","m"]
-devide =["/","devide","d"]
+divide =["/","divide","d"]
 times = ["x","*","times","t"]
 keep_going = ""
  
@@ -168,7 +168,7 @@ while rounds_played < rounds_wanted:
         elif what_mode in minus:
             mode = "minus"
    
-        elif what_mode in devide:
+        elif what_mode in divide:
             mode = "divide"
       
         elif what_mode in times:
@@ -182,7 +182,7 @@ while rounds_played < rounds_wanted:
             mode = "xxx"
         #prints error message if anything tother than +-/x is entered
         else:
-            print("please enter + - x or /")
+            print("please enter + - x / or enter for random mode")
             mode= "no"
         
         #breaks the error loop in less line of code than using break for every mode :)
@@ -208,8 +208,8 @@ while rounds_played < rounds_wanted:
     print("{} mode".format(mode))
     loop = 1
         
-    #resets the loop for devide mode
-    loop_devide = False
+    #resets the loop for divide mode
+    loop_divide = False
                 
     #loops for 10 quesses
     while question_loop <7: 
@@ -220,7 +220,7 @@ while rounds_played < rounds_wanted:
         if random_mode == True:
             mode = random.choice(random_mode_list)  
         
-        #generates a high number for devide and plus
+        #generates a high number for divide and plus
         if mode in high_number_list:
             number_1 = random.randint(1,30)
             number_2 = random.randint(1,30)
@@ -230,9 +230,9 @@ while rounds_played < rounds_wanted:
             number_1 = random.randint(1,12)
             number_2 = random.randint(1,12)
         
-        #devide mode
+        #divide mode
                 
-        if mode == "divided":
+        if mode == "divide":
             number_3 = number_1 * number_2
             answer = number_3 / number_2
             number_1 = number_3
@@ -251,7 +251,7 @@ while rounds_played < rounds_wanted:
             simple_mode = "*"
                 
         #forms answer buy + two diffrent numbers
-        else:
+        elif mode == "plus":
             answer = number_1 + number_2
             simple_mode = "+"
         
