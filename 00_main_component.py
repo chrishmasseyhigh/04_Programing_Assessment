@@ -1,6 +1,5 @@
 import random
 
-
 #functions go here
 
 # Number checking function goes here
@@ -96,13 +95,13 @@ def instructions():
 
     print('''
 
-       *****************************************************************************************************************************
-       * ------------------------------------------------------------------------------------------------------------------------- ******************
-       * |In this game you will choose the amount of rounds to play for a number or infinite and what mode to play for each round|----------------- *
+       *****************************************************************************************************************************************
+       * --------------------------------------------------------------------------------------------------------------------------------------*
+       * |In this game you will choose the amount of rounds to play for a number eg 2 or infinite mode and what mode to play for each round eg|******
        * |( divide, plus, times,minus and random - random will chose a different mode for every question eg minus for one and plus for the other.)| * 
        * |You can enter xxx to quit at any time and round history will be displayed at the end. Each round has 7 questions``````````````````````````*
        * ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````**************************
-       *****************************************************************************************
+       *********************************************************************************************************************
 
     ''',)
 
@@ -148,8 +147,6 @@ rounds_played = 0
 if rounds_wanted == "":
     round_mode = "infinite"
     rounds_wanted = 10 
-
-
 
 #loops for desiered amount
 while rounds_played < rounds_wanted:
@@ -216,12 +213,12 @@ while rounds_played < rounds_wanted:
                 
     #loops for 10 quesses
     while question_loop <7: 
+        
         #generates answer based on mode
                         
         #gereates a random mode for every quetion if radom mode is acitivated
         if random_mode == True:
             mode = random.choice(random_mode_list)  
-        
         
         #generates a high number for devide and plus
         if mode in high_number_list:
@@ -232,7 +229,6 @@ while rounds_played < rounds_wanted:
         else:
             number_1 = random.randint(1,12)
             number_2 = random.randint(1,12)
-        
         
         #devide mode
                 
@@ -265,13 +261,13 @@ while rounds_played < rounds_wanted:
         print()
 
         #breaks if exit code is entered
+        
         #checks if answer is wrong or right or seets result to xxx if they want to exit
         if user_input == answer:        
             print("you are right")
             wins +=1
             result = "right"
         
-
         elif user_input =="xxx":
             result = "xxx"
        
@@ -312,7 +308,6 @@ if questions == 0:
     print()
     statement_decorator("no history you chickened out","!",3)
 
-# if there are more than one questions entered one (to avoid having xxx as the first answer) 
 # win and loss history is diplayed
 else:
     total_win_loss = wins + loses
