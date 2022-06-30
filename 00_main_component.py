@@ -257,7 +257,7 @@ while rounds_played < rounds_wanted:
         
         #gets the input from the user
         print()
-        user_input = intcheck("What is {} {} {} ".format(number_1,simple_mode,number_2),low = 0, exit_code="xxx")
+        user_input = intcheck("What is {} {} {}: ".format(number_1,simple_mode,number_2),low = 0, exit_code="xxx")
         print()
 
         #breaks if exit code is entered
