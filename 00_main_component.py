@@ -113,8 +113,8 @@ def instructions():
 quiz_history = [] 
 user_input_historylist =[]
 #lists all the modes to chose from for testing
-random_mode_list =["plus","minus","times","divided"]
-high_number_list=["plus","divided"]
+random_mode_list =["plus","minus","times","divide"]
+high_number_list=["plus","divide"]
 keep_going = ""
 
 wins = 0
