@@ -189,11 +189,12 @@ while rounds_played < rounds_wanted:
         if mode !="no":
             mode_select = 0
     
-    rounds_played +=1
     
     #breaks code if xxx is enetered
     if mode == "xxx":
         break
+    
+    rounds_played +=1
     #displays round 
     print()
     statement_decorator("Round {}".format(rounds_played),"-",1)
